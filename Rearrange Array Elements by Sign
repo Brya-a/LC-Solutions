@@ -1,0 +1,26 @@
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int[] neg = new int[nums.length/2];
+        int[] pos = new int[nums.length/2];
+        int negi = 0;
+        int posi = 0;
+        for(int i=0; i<nums.length; i++){
+            if (nums[i] > 0){
+                pos[posi] = nums[i];
+                posi++;
+            }else{
+                neg[negi] = nums[i];
+                negi++;
+            }
+        }
+        int[] ans = new int[nums.length];
+        for(int i=0; i<ans.length; i++){
+            if (i%2 == 0){
+                ans[i] = pos[i/2];
+            } else{
+                ans[i] = neg[i/2];
+            }
+        }
+        return ans;
+    }
+}
