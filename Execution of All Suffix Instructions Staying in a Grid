@@ -1,0 +1,44 @@
+class Solution {
+    public int[] executeInstructions(int n, int[] startPos, String s) {
+        int[] ans = new int[s.length()];
+        for (int i=0; i<ans.length; i++){
+            int cnt = 0;
+            int posx = startPos[1];
+            int posy = startPos[0];
+            for(int j=0; j<s.length(); j++){
+                if (s.substring(j, j+1).equals("R")){
+                    if (posx + 1 == n){
+                        break;
+                    } else{
+                        posx +=1;
+                        cnt++;
+                    }
+                }else if (s.substring(j, j+1).equals("L")){
+                    if (posx - 1 == -1){
+                        break;
+                    } else{
+                        posx -=1;
+                        cnt++;
+                    }
+                }else if (s.substring(j, j+1).equals("U")){
+                    if (posy - 1 == -1){
+                        break;
+                    } else{
+                        posy -=1;
+                        cnt++;
+                    }
+                }else if (s.substring(j, j+1).equals("D")){
+                    if (posy + 1 == n){
+                        break;
+                    } else{
+                        posy +=1;
+                        cnt++;
+                    }
+                }
+            }
+            ans[i] = cnt;
+            s = s.substring(1, s.length());
+        }
+        return ans;
+    }
+}
