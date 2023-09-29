@@ -1,0 +1,39 @@
+class Solution {
+    public boolean buddyStrings(String s, String goal) {
+        ArrayList<String> str = new ArrayList<String>();
+        int[] freqs = new int[100];
+        int[] freqg = new int[100];
+        for (int i=0; i<s.length(); i++){
+            freqs[s.charAt(i)-61]++;
+        }
+        for (int i=0; i<goal.length(); i++){
+            freqg[goal.charAt(i)-61]++;
+        }
+        boolean flag = false;
+        int cnt = 0;
+        int maxfreq = 0;
+        if (s.length() == goal.length()){
+            for(int i=0; i<freqg.length; i++){
+                if (freqs[i] > maxfreq) maxfreq = freqs[i];
+                if (freqg[i] != freqs[i]){
+                    flag = true;
+                }
+            }
+            if (flag) return false;
+            for (int i=0; i<s.length(); i++){
+                if (!s.substring(i, i+1).equals(goal.substring(i, i+1))){
+                    cnt++;
+                }
+            }
+            if (cnt == 2){
+                return true;
+            }else if (cnt ==0 && maxfreq >=2){
+                return true;
+            }else{
+                return false;
+            }
+        } else{
+            return false;
+        }
+    }
+}
