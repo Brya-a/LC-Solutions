@@ -1,0 +1,45 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] range = new int[2];
+        int n1 = bsH(nums, target);
+        int n2 = bsL(nums, target);
+        System.out.println(n1);
+        if (n1 == n2){
+            range[0] = -1;
+            range[1]  = -1;
+            return range;
+        }else{
+            range[0] = n1;
+            range[1]  = n2-1;
+            return range;
+        }
+    }
+
+
+    public static int bsH (int[] arr, int target){
+        int R = arr.length;
+        int L = 0;
+        while (L<R){
+            int mid = (R+L)/2;
+            if (arr[mid] < target){
+                L = mid+1;
+            } else{
+                R = mid;
+            }
+        }
+        return L;
+    }
+    public static int bsL (int[] arr, int target){
+        int R = arr.length;
+        int L = 0;
+        while (L<R){
+            int mid = (R+L)/2;
+            if (arr[mid] <= target){
+                L = mid+1;
+            } else{
+                R = mid;
+            }
+        }
+        return L;
+    }
+}
